@@ -27,7 +27,7 @@ export class JobsService {
 
 
     save(data) {
-        return this.http.post<User>(`${environment.apiUrl}/api/admin/jobs`, data)
+        return this.http.post<User>(`api/admin/jobs`, data)
             .pipe(map(res => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 return res;
