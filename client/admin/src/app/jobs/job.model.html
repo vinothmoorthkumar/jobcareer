@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Create Job</h1>
 
 <div mat-dialog-content>
-    <form [formGroup]="addShopFormGroup" (ngSubmit)="onSubmit()" class="example-form">
+    <form [formGroup]="FormGroup" class="example-form">
         <p>
             <mat-form-field appearance="outline" class="full-width-field">
                 <mat-label>Company Name</mat-label>
@@ -37,5 +37,7 @@
 </div>
 <div mat-dialog-actions class="float-right">
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data.animal" color="primary" mat-raised-button>Submit</button>
+  <!-- <button mat-button [mat-dialog-close]="data.animal" color="primary" mat-raised-button>Submit</button> -->
+  <button mat-button color="primary" [disabled]="!FormGroup.valid" (click)="onSubmit()" mat-raised-button>Submit</button>
+
 </div>

@@ -1,9 +1,10 @@
 ﻿import { User } from '@app/_models';
-import { AccountService } from '@app/_services';
+import { JobsService } from '@app/_services';
 import { Component, Inject } from '@angular/core';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
 
 export interface PeriodicElement {
     name: string;
@@ -31,9 +32,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
     styleUrls: ['jobs.component.css']
 })
 export class JobsComponent {
-    animal: string;
     name: string;
-    constructor(private accountService: AccountService, public dialog: MatDialog) {
+    constructor(private jobService: JobsService, public dialog: MatDialog) {
     }
 
 
@@ -41,17 +41,30 @@ export class JobsComponent {
         const dialogRef = this.dialog.open(JobsDialog, {
             height: '80%',
             width: '50%',
-            data: { name: this.name, animal: this.animal },
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
-            this.animal = result;
+            this.saveData(result.data);
         });
     }
 
     displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
     dataSource = ELEMENT_DATA;
+
+
+    saveData(data){
+        this.jobService.save(data)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    // this.alertService.success('User added successfully', { keepAfterRouteChange: true });
+                    // this.router.navigate(['.', { relativeTo: this.route }]);
+                },
+                error => {
+                    // this.alertService.error(error);
+                    // this.loading = false;
+                });
+    }
 }
 
 
@@ -62,7 +75,7 @@ export class JobsComponent {
 })
 
 export class JobsDialog {
-    public addShopFormGroup: FormGroup;
+    public FormGroup: FormGroup;
 
     constructor(
         public dialogRef: MatDialogRef<JobsDialog>,
@@ -70,11 +83,11 @@ export class JobsDialog {
     ) { }
 
     onNoClick(): void {
-        this.dialogRef.close();
+        this.dialogRef.close({event:"close"});
     }
 
     ngOnInit() {
-        this.addShopFormGroup = new FormGroup({
+        this.FormGroup = new FormGroup({
             // companyName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
             // JobTitle: new FormControl('', [Validators.required, Validators.maxLength(200)])
             companyName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
@@ -84,10 +97,11 @@ export class JobsDialog {
     }
 
     public checkError = (controlName: string, errorName: string) => {
-        return this.addShopFormGroup.controls[controlName].hasError(errorName);
+        return this.FormGroup.controls[controlName].hasError(errorName);
     }
 
     onSubmit() {
-
+        this.dialogRef.close({event:"save",data:this.FormGroup.value});
+        // console.log('this.FormGroup.value',this.FormGroup.value)
     }
 }
