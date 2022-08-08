@@ -59,6 +59,8 @@ app.use((req, res, next) => {
 // after all the above middleware, now we handle our routes
 
 app.use(express.static(path.join(__dirname,"../client/site/dist")));
+app.use("/admin",express.static(path.join(__dirname,"../client/admin/dist")));
+
 // app.use('/', (req,res) => {
 //   res.sendFile(path.join(__dirname,"../client/site/dist/index.html"))
 // });
