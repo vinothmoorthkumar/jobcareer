@@ -3,9 +3,13 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar style="border-bottom: 1px #dfe0df solid;">Menu</mat-toolbar>
     <mat-nav-list>
-      <a *ngFor="let item of menuItems" mat-list-item [routerLink]="'/'+item"> {{item}} </a>
+      <ng-container *ngFor="let item of menuItems" >
+        <a mat-list-item [routerLink]="'/'+item"> {{item}} </a>
+        <mat-divider></mat-divider>
+
+      </ng-container>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
