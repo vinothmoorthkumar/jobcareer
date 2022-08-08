@@ -11,7 +11,7 @@ const flash = require('connect-flash');
 
 
 //import our created modules
-const routes = require('./routes/index');
+const routesAdmin = require('./routes/admin');
 const helpers = require('./helpers');
 const errorHandlers = require('./handlers/errorHandlers');
 require('./handlers/passport');
@@ -65,7 +65,7 @@ app.use("/admin",express.static(path.join(__dirname,"../client/admin/dist")));
 //   res.sendFile(path.join(__dirname,"../client/site/dist/index.html"))
 // });
 
-// app.use('/', routes);
+app.use('/api/admin', routesAdmin);
 
 // if the routes not found/has error then we show 404/forward them to error handlers 
 // app.use(errorHandlers.notFound);

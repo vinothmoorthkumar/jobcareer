@@ -1,0 +1,18 @@
+const mongoose = require('mongoose');
+
+exports.save = (req, res, next) => {
+    // req.sanitizeBody('name');
+    // req.checkBody('name', 'You must enter a Name!').notEmpty();
+    // req.checkBody('email', 'Not a valid Email!').isEmail();
+    const errors = req.validationErrors();
+    if(errors) {
+        req.flash('error', errors.map(err => err.msg));
+        res.render('register', {title: 'Register', body: req.body, flashes: req.flash() });
+        return;
+    }
+
+    console.log("########",req.body);
+    res.send({"test":"test"})
+};
+
+
