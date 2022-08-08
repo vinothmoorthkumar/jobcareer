@@ -8,7 +8,6 @@ const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
-const {promisify} = require('es6-promisify');
 
 
 //import our created modules
@@ -56,29 +55,30 @@ app.use((req, res, next) => {
   next();
 });
 
-// promisify some callback based APIs
-app.use((req, res, next) => {
-  req.login = promisify(req.login, req);
-  next();
-});
 
 // after all the above middleware, now we handle our routes
-app.use('/', routes);
+
+app.use(express.static(path.join(__dirname,"../client/site/dist")));
+// app.use('/', (req,res) => {
+//   res.sendFile(path.join(__dirname,"../client/site/dist/index.html"))
+// });
+
+// app.use('/', routes);
 
 // if the routes not found/has error then we show 404/forward them to error handlers 
-app.use(errorHandlers.notFound);
+// app.use(errorHandlers.notFound);
 // one of our error handlers will see if these errors are just validation errors
-app.use(errorHandlers.flashValidationErrors);
+// app.use(errorHandlers.flashValidationErrors);
 
 
 // Otherwise this was a really bad error we didn't expect! Shoot eh
-if (app.get('env') === 'development') {
-  /* Development Error Handler - Prints stack trace */
-  app.use(errorHandlers.developmentErrors);
-}
+// if (app.get('env') === 'development') {
+//   /* Development Error Handler - Prints stack trace */
+//   app.use(errorHandlers.developmentErrors);
+// }
 
 // production error handler
-app.use(errorHandlers.productionErrors);
+// app.use(errorHandlers.productionErrors);
 
 module.exports = app;
 

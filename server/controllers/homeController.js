@@ -1,4 +1,4 @@
 exports.index = function(req, res){
-    res.render('index',{ title:'Home' });
+    res.send('index',{ title:'Home' });
 };
 
