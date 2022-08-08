@@ -10,7 +10,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './_components';
-import { HomeComponent } from './home';;
+import { HomeComponent } from './home';
+import { JobsComponent } from './/jobs/jobs.component';;
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -19,6 +21,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
 
 import { CommonModule } from '@angular/common';
 
@@ -35,12 +38,14 @@ import { CommonModule } from '@angular/common';
         MatSidenavModule,
         MatIconModule,
         MatListModule,
-        MatButtonModule
+        MatButtonModule,
+        MatTableModule
           ],
     declarations: [
         AppComponent,
         AlertComponent,
         HomeComponent,
+        JobsComponent,
         NavComponent],
     exports:[
         CommonModule
