@@ -7,7 +7,7 @@ router.post('/jobs', jobsController.save);
 router.get('/jobs/:id', jobsController.getById);
 router.get('/jobs', jobsController.list);
 router.put('/jobs/:id', jobsController.update);
-
+router.delete('/jobs/:id', jobsController.delete);
 
 // router.get('/register', authController.hasLoggedIn, userController.registerForm);
 // router.post('/register', 

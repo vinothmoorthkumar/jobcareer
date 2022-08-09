@@ -41,6 +41,10 @@ export class JobsService {
         return this.http.get<any>(`api/admin/jobs/${id}`);
     }
 
+    delete(id: string) {
+        return this.http.delete<any>(`api/admin/jobs/${id}`);
+    }
+
 
     update(id, params) {
         return this.http.put(`api/admin/jobs/${id}`, params)

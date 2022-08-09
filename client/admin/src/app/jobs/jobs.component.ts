@@ -77,8 +77,19 @@ export class JobsComponent {
 
 
     updateData(data){
-        console.log("###",data)
         this.jobService.update(data._id,data)
+        .pipe(first())
+        .subscribe(
+            data => {
+                this.getData();
+                this.alertService.success('User added successfully', { keepAfterRouteChange: true });
+            },
+            error => {
+            });
+    }
+
+    deleteData(id){
+        this.jobService.delete(id)
         .pipe(first())
         .subscribe(
             data => {
