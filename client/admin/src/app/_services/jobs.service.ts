@@ -28,7 +28,6 @@ export class JobsService {
     save(data) {
         return this.http.post<any>(`api/admin/jobs`, data)
             .pipe(map(res => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
                 return res;
             }));
     }
@@ -40,6 +39,14 @@ export class JobsService {
 
     getById(id: string) {
         return this.http.get<any>(`api/admin/jobs/${id}`);
+    }
+
+
+    update(id, params) {
+        return this.http.put(`api/admin/jobs/${id}`, params)
+            .pipe(map(res => {
+                return res;
+            }));
     }
 
     // login(username, password) {

@@ -52,3 +52,20 @@ exports.getById = (req, res, next) => {
 };
 
 
+exports.update = (req, res, next) => {
+    try{
+        let model={
+            companyName: req.body.companyName,
+            jobTitle: req.body.jobTitle,
+            jobDescription: req.body.jobDescription,
+        }
+        console.log("eq.params.id",req.params.id)
+        Model.findOneAndUpdate({_id:req.params.id},model,{upsert:true}).then((result)=>{
+            res.send({"message":"Success",data:result})
+        })
+    }catch(err){
+        res.send({message:"Error",Error:err});
+    }
+};
+
+

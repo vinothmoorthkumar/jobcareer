@@ -43,10 +43,10 @@ export class JobsComponent {
             .pipe(first())
             .subscribe(
                 data => {
+                    this.getData();
                     this.alertService.success('User added successfully', { keepAfterRouteChange: true });
                 },
                 error => {
-                    // this.alertService.error(error);
                 });
     }
 
@@ -67,12 +67,26 @@ export class JobsComponent {
                 width: '50%',
             });
             dialogRef.afterClosed().subscribe(result => {
-                // this.saveData(result.data);
+                this.updateData(result.data);
             });
 
         },err=>{
 
         })
+    }
+
+
+    updateData(data){
+        console.log("###",data)
+        this.jobService.update(data._id,data)
+        .pipe(first())
+        .subscribe(
+            data => {
+                this.getData();
+                this.alertService.success('User added successfully', { keepAfterRouteChange: true });
+            },
+            error => {
+            });
     }
 }
 
@@ -102,12 +116,14 @@ export class JobsDialog {
             jobDescription: new FormControl('', [Validators.required, Validators.maxLength(200)])
         });
 
-        let obj={
-            companyName:this.data.companyName,
-            jobTitle:this.data.jobTitle,
-            jobDescription:this.data.jobDescription,
+        if(this.data){
+            let obj={
+                companyName:this.data.companyName,
+                jobTitle:this.data.jobTitle,
+                jobDescription:this.data.jobDescription,
+            }
+            this.FormGroup.setValue(obj);
         }
-        this.FormGroup.setValue(obj);
     }
 
     public checkError = (controlName: string, errorName: string) => {
@@ -115,6 +131,11 @@ export class JobsDialog {
     }
 
     onSubmit() {
-        this.dialogRef.close({event:"save",data:this.FormGroup.value});
+        let obj={event:"save",data:this.FormGroup.value}
+        if(this.data){
+         obj['event']="update";
+         obj['data']['_id']=this.data._id;
+        }
+        this.dialogRef.close(obj);
     }
 }
