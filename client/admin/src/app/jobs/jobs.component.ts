@@ -15,7 +15,7 @@ import { first } from 'rxjs/operators';
 })
 export class JobsComponent {
     name: string;
-
+    editObj:any={};
     constructor(private alertService: AlertService,private jobService: JobsService, public dialog: MatDialog) {
     }
 
@@ -54,15 +54,25 @@ export class JobsComponent {
         this.jobService.getAll().subscribe(res=>{
             let result:any =res;
             this.dataSource=result.data;
-            console.log("####",result)
         },err=>{
 
         })
     }
 
+    editData(id){
+        this.jobService.getById(id).subscribe(res=>{
+            const dialogRef = this.dialog.open(JobsDialog, {
+                data:res.data,
+                height: '80%',
+                width: '50%',
+            });
+            dialogRef.afterClosed().subscribe(result => {
+                // this.saveData(result.data);
+            });
 
-    editData(){
-        
+        },err=>{
+
+        })
     }
 }
 
@@ -91,6 +101,13 @@ export class JobsDialog {
             jobTitle: new FormControl('', [Validators.required, Validators.maxLength(200)]),
             jobDescription: new FormControl('', [Validators.required, Validators.maxLength(200)])
         });
+
+        let obj={
+            companyName:this.data.companyName,
+            jobTitle:this.data.jobTitle,
+            jobDescription:this.data.jobDescription,
+        }
+        this.FormGroup.setValue(obj);
     }
 
     public checkError = (controlName: string, errorName: string) => {
@@ -99,6 +116,5 @@ export class JobsDialog {
 
     onSubmit() {
         this.dialogRef.close({event:"save",data:this.FormGroup.value});
-        // console.log('this.FormGroup.value',this.FormGroup.value)
     }
 }

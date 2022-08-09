@@ -41,4 +41,14 @@ exports.list = (req, res, next) => {
     }
 };
 
+exports.getById = (req, res, next) => {
+    try{
+        Model.findOne({_id:req.params.id}).then((result)=>{
+            res.send({"message":"Success",data:result})
+        })
+    }catch(err){
+        res.send({message:"Error",Error:err});
+    }
+};
+
 

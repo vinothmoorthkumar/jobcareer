@@ -38,6 +38,10 @@ export class JobsService {
         return this.http.get<any[]>(`api/admin/jobs`);
     }
 
+    getById(id: string) {
+        return this.http.get<any>(`api/admin/jobs/${id}`);
+    }
+
     // login(username, password) {
     //     return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { username, password })
     //         .pipe(map(user => {
@@ -61,9 +65,7 @@ export class JobsService {
 
 
 
-    // getById(id: string) {
-    //     return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
-    // }
+
 
     // update(id, params) {
     //     return this.http.put(`${environment.apiUrl}/users/${id}`, params)
