@@ -5,33 +5,37 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
-import { User } from '@app/_models';
 
 @Injectable({ providedIn: 'root' })
 export class JobsService {
-    private userSubject: BehaviorSubject<User>;
-    public user: Observable<User>;
+    private userSubject: BehaviorSubject<any>;
+    public user: Observable<any>;
 
     constructor(
         private router: Router,
         private http: HttpClient
     ) {
-        this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+        this.userSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('user')));
         this.user = this.userSubject.asObservable();
     }
 
-    public get userValue(): User {
+    public get userValue(): any {
         return this.userSubject.value;
     }
 
 
 
     save(data) {
-        return this.http.post<User>(`api/admin/jobs`, data)
+        return this.http.post<any>(`api/admin/jobs`, data)
             .pipe(map(res => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 return res;
             }));
+    }
+
+
+    getAll() {
+        return this.http.get<any[]>(`api/admin/jobs`);
     }
 
     // login(username, password) {
@@ -55,9 +59,7 @@ export class JobsService {
     //     return this.http.post(`${environment.apiUrl}/users/register`, user);
     // }
 
-    // getAll() {
-    //     return this.http.get<User[]>(`${environment.apiUrl}/users`);
-    // }
+
 
     // getById(id: string) {
     //     return this.http.get<User>(`${environment.apiUrl}/users/${id}`);

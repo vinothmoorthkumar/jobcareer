@@ -1,18 +1,44 @@
 const mongoose = require('mongoose');
+const Model=  require('../../models/Jobs')
+
 
 exports.save = (req, res, next) => {
-    // req.sanitizeBody('name');
-    // req.checkBody('name', 'You must enter a Name!').notEmpty();
-    // req.checkBody('email', 'Not a valid Email!').isEmail();
-    const errors = req.validationErrors();
-    if(errors) {
-        req.flash('error', errors.map(err => err.msg));
-        res.render('register', {title: 'Register', body: req.body, flashes: req.flash() });
-        return;
+    try{
+        req.checkBody('companyName', 'You must enter a companyName!').notEmpty();
+        req.checkBody('jobTitle', 'You must enter a jobTitle!').notEmpty();
+        req.checkBody('jobDescription', 'You must enter a jobDescription!').notEmpty();
+        const errors = req.validationErrors();
+        if(errors) {
+            res.send({message:"Error",Error:erros});
+            return;
+        }
+    
+        var model= new Model({
+            companyName: req.body.companyName,
+            jobTitle: req.body.jobTitle,
+            jobDescription: req.body.jobDescription,
+        })
+    
+        model.save(function(err){
+            if(err){
+                res.send({message:"Error",Error:err});
+            }else{
+                res.send({"message":"Success",data:model})
+            }
+        })
+    }catch(err){
+        res.send({message:"Error",Error:err});
     }
+};
 
-    console.log("########",req.body);
-    res.send({"test":"test"})
+exports.list = (req, res, next) => {
+    try{
+        Model.find({}).then((result)=>{
+            res.send({"message":"Success",data:result})
+        })
+    }catch(err){
+        res.send({message:"Error",Error:err});
+    }
 };
 
 

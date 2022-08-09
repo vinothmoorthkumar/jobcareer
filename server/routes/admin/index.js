@@ -4,6 +4,8 @@ const jobsController = require('../../controllers/admin/jobs');
 
 
 router.post('/jobs', jobsController.save);
+router.get('/jobs', jobsController.list);
+
 
 // router.get('/register', authController.hasLoggedIn, userController.registerForm);
 // router.post('/register', 
