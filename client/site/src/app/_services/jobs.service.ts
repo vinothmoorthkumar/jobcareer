@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -16,9 +16,12 @@ export class JobsService {
     }
 
 
-    getAllJobs() {
-        return this.http.get<any[]>(`/api/site/jobs`);
+    getAllJobs(data) {
+        let params= new HttpParams();
+        if(data.search){
+            params=params.append('search',data.search)
+        }
+        return this.http.get<any[]>(`/api/site/jobs`,{params:params});
     }
 
-   
 }

@@ -51,7 +51,7 @@
     <div class="container ">
         <div class="mb-1 col-md-3 ml-md-auto pr-0">
             <div class="input-group rounded">
-                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                <input type="search" class="form-control rounded" [(ngModel)]="searchData" (ngModelChange)="getData()" placeholder="Search" aria-label="Search"
                     aria-describedby="search-addon" />
                 <span class="input-group-text border-0" id="search-addon">
                     <i class="bi bi-search"></i>

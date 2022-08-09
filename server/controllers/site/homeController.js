@@ -4,7 +4,12 @@ const Model=  require('../../models/Jobs')
 
 exports.list = (req, res, next) => {
     try{
-        Model.find({}).then((result)=>{
+        let query={};
+        if(req.query.search){
+            query["jobTitle"]={"$regex":req.query.search,$options:"i"};
+        }
+        console.log("SSSS",query)
+        Model.find(query).then((result)=>{
             res.send({"message":"Success",data:result})
         })
     }catch(err){
