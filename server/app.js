@@ -25,7 +25,6 @@ app.use(bodyParser.urlencoded({ extended: true })); //search the extended true v
 //populates req.cookies with any cookies that came along with the request
 app.use(cookieParser());
 
-//serves up static files from the public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 // validating form data in validateRegister in userController 
@@ -57,9 +56,11 @@ app.use((req, res, next) => {
 
 
 // after all the above middleware, now we handle our routes
-
+app.use('/admin',express.static(path.join(__dirname,"../client/admin/dist")));
+// app.get('/admin', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/admin/dist/index.html'));
+// });
 app.use(express.static(path.join(__dirname,"../client/site/dist")));
-app.use("/admin",express.static(path.join(__dirname,"../client/admin/dist")));
 
 // app.use('/', (req,res) => {
 //   res.sendFile(path.join(__dirname,"../client/site/dist/index.html"))

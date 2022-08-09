@@ -22,7 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
-import { CommonModule } from '@angular/common';
+import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -59,13 +59,17 @@ import { FormsModule } from '@angular/forms';
     exports:[
         CommonModule
     ],
-    // providers: [
-    //     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    //     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    providers: [
+        // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
-    //     // provider used to create fake backend
-    //     fakeBackendProvider
-    // ],
+        // // provider used to create fake backend
+        // fakeBackendProvider
+        {
+            provide: LocationStrategy,
+            useClass: HashLocationStrategy
+        }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { };
