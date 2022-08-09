@@ -26,7 +26,7 @@ export class JobsService {
 
 
     save(data) {
-        return this.http.post<any>(`api/admin/jobs`, data)
+        return this.http.post<any>(`/api/admin/jobs`, data)
             .pipe(map(res => {
                 return res;
             }));

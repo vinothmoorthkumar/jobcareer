@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const homeController = require('../controllers/homeController');
-const userController = require('../controllers/userController');
-const authController = require('../controllers/authController');
-const { catchErrors } = require('../handlers/errorHandlers');
+const jobsController = require('../../controllers/site/homeController');
+// const userController = require('../controllers/userController');
+// const authController = require('../controllers/authController');
+// const { catchErrors } = require('../handlers/errorHandlers');
 
-router.get('/', homeController.index);
+router.get('/jobs', jobsController.list);
 
 // router.get('/register', authController.hasLoggedIn, userController.registerForm);
 // router.post('/register', 

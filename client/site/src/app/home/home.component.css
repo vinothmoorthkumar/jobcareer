@@ -1,0 +1,20 @@
+.jobtitle{
+    color: #808080;
+}
+
+.postedAt {
+    font-size: 12px;
+    padding-top: 15px;
+    color: gray;
+}
+
+.WebSiteTitle {
+    font-weight: bold;
+    font-size: 25px;
+    font-family: fantasy;
+}
+
+.jobList {    
+    overflow: auto;
+    height: 84vh;
+}

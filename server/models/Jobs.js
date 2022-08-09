@@ -15,9 +15,7 @@ const jobsSchema = new mongoose.Schema({
     jobDescription: {
         type: String,
     },
-
-
-});
+}, { timestamps: true });
 
 jobsSchema.plugin(mongodbErrorHandler);
 
