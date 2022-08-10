@@ -8,17 +8,10 @@
     color: gray;
 }
 
-.WebSiteTitle {
-    font-weight: bold;
-    font-size: 25px;
-    font-family: fantasy;
-}
+
 
 .jobList {    
     overflow: auto;
     height: 75vh;
 }
 
-.dropdown-menu{
-    left: -100px;
-}
