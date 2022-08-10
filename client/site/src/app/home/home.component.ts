@@ -1,13 +1,13 @@
 ﻿import { Component } from '@angular/core';
 
-import { JobsService, AccountService } from '@app/_services';
+import { JobsService, AccountService, AlertService } from '@app/_services';
 
 @Component({ templateUrl: 'home.component.html',styleUrls:["home.component.css"] })
 export class HomeComponent {
     jobs:any=[];
     user;
     searchData:any="";
-    constructor(private jobService: JobsService,public accountService:AccountService) {
+    constructor(public alertService:AlertService,private jobService: JobsService,public accountService:AccountService) {
         this.accountService.user.subscribe(x => this.user = x);
     }
 
@@ -32,6 +32,18 @@ export class HomeComponent {
 
     logout() {
         this.accountService.logout();
+    }
+
+    applyJob(id){
+        this.alertService.clear();
+        this.alertService.success('Updated successful');
+        this.jobService.applyJob(id).subscribe(res=>{
+            let result:any=res;
+            this.jobs=result.data;
+            console.log("this.jobs",this.jobs)
+        },err=>{
+
+        })
     }
 
 }

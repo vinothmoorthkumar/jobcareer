@@ -117,7 +117,7 @@ export class ProfileComponent implements OnInit {
   onSubmit(){
     this.submitted = true;
     this.loading = true;
-    console.log("this.form.value",this.form.value)
+    this.alertService.clear();
     this.usersService.updateUserData(this.form.value)
     .pipe(first())
     .subscribe(
@@ -131,18 +131,9 @@ export class ProfileComponent implements OnInit {
             this.alertService.error(error);
             this.loading = false;
         });
-    // this.accountService.register(this.form.value)
-    // .pipe(first())
-    // .subscribe(
-    //     data => {
-    //         this.alertService.success('Registration successful', { keepAfterRouteChange: true });
-    //         this.router.navigate(['../login'], { relativeTo: this.route });
-    //     },
-    //     error => {
-    //         this.alertService.error(error);
-    //         this.loading = false;
-    //     });
   }
+
+
 
   get f() { return this.form.controls; }
 

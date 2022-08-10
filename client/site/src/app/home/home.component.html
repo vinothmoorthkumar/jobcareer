@@ -17,7 +17,7 @@
                     <h6 class="card-text jobtitle">{{item.jobTitle}}</h6>
                     <p class="card-text">{{item.jobDescription}}</p>
                     <h6 class="float-left mb-0 postedAt">Posted At {{item.createdAt | date:'medium'}}</h6>
-                    <button class="btn btn-primary float-right" *ngIf="user">Apply</button>
+                    <button class="btn btn-primary float-right" *ngIf="user" (click)="applyJob(item._id)">Apply</button>
                 </div>
             </div>
         </div>

@@ -24,4 +24,8 @@ export class JobsService {
         return this.http.get<any[]>(`/api/site/jobs`,{params:params});
     }
 
+    applyJob(id) {
+        return this.http.get<any[]>(`/api/site/applyJob?id=${id}`);
+    }
+
 }

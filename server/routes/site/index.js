@@ -17,5 +17,6 @@ router.post('/login', authController.login);
 
 router.get('/profile', authController.isLoggedIn, userController.getProfile);
 router.post('/user', authController.isLoggedIn, userController.updateProfile);
+router.get('/applyJob', authController.isLoggedIn, userController.applyJob);
 
 module.exports = router;

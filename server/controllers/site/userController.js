@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 mongoose.set("useFindAndModify",false)
 const Model = mongoose.model('User');
+const appliedJob=  require('../../models/appliedJobs')
+
 const bcrypt = require("bcrypt");
 
 // const { promisify } = require('es6-promisify');
@@ -100,3 +102,29 @@ exports.updateProfile = (req, res) => {
         res.send({message:"Error",Error:err});
     }
 }
+
+
+exports.applyJob = async (req, res, next) => {
+    try{
+        const errors = req.validationErrors();
+        if(errors) {
+            res.send({message:"Error",Error:errors});
+            return;
+        }
+    
+        var AppliedJob= new appliedJob({
+            userId: req.user.user_id,
+            jobId: req.query.id,
+        })
+    
+        AppliedJob.save(function(err){
+            if(err){
+                res.send({message:"Error",Error:err});
+            }else{
+                res.send({"message":"Success",data:AppliedJob})
+            }
+        })
+    }catch(err){
+        res.send({message:"Error",Error:err});
+    }
+};
