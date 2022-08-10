@@ -1,5 +1,8 @@
-// const mongoose = require('mongoose');
-// const User = mongoose.model('User');
+const mongoose = require('mongoose');
+mongoose.set("useFindAndModify",false)
+const Model = mongoose.model('User');
+const bcrypt = require("bcrypt");
+
 // const { promisify } = require('es6-promisify');
 
 // exports.registerForm = (req, res) => {
@@ -35,17 +38,40 @@
 
 // };
 
-// exports.register = async (req, res, next) => {
-//     const user = new User({
-//         name: req.body.name, 
-//         email: req.body.email 
-//     });
-//     //turn callback function into promise based function as method to promisify and obj to bind
-//     //use .bind to bind obj in promisify version-6
-//     const register = promisify(User.register.bind(User));
-//     await register(user, req.body.password);
-//     next();//pass to authcontroller to login
-// };
+exports.register = async (req, res, next) => {
+    try{
+        req.checkBody('email', 'You must enter a email!').notEmpty();
+        req.checkBody('name', 'You must enter a name!').notEmpty();
+        req.checkBody('password', 'You must enter a password!').notEmpty();
+        req.checkBody('mobile', 'You must enter a mobile!').notEmpty();
+
+        const errors = req.validationErrors();
+        if(errors) {
+            res.send({message:"Error",Error:erros});
+            return;
+        }
+    
+        var model= new Model({
+            email: req.body.email,
+            name: req.body.name,
+            mobile: req.body.mobile,
+        })
+    
+        const salt = await bcrypt.genSalt(10);
+        // now we set user password to hashed password
+        model.password = await bcrypt.hash(req.body.password, salt);
+
+        model.save(function(err){
+            if(err){
+                res.send({message:"Error",Error:err});
+            }else{
+                res.send({"message":"Success",data:model})
+            }
+        })
+    }catch(err){
+        res.send({message:"Error",Error:err});
+    }
+};
 
 // exports.getProfile = (req, res) => {
 //     res.render('profile', { title:'Profile' });

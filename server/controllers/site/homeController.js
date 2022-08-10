@@ -8,7 +8,6 @@ exports.list = (req, res, next) => {
         if(req.query.search){
             query["jobTitle"]={"$regex":req.query.search,$options:"i"};
         }
-        console.log("SSSS",query)
         Model.find(query).then((result)=>{
             res.send({"message":"Success",data:result})
         })

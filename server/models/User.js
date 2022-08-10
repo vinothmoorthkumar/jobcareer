@@ -13,7 +13,15 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         trim: true,
-        required: "Please enter a name!"
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    mobile: {
+        type: Number,
+        required: true
     },
     email: {
         type: String,
@@ -21,14 +29,10 @@ const userSchema = new mongoose.Schema({
         lowercase: true,
         trim: true,
         validate: [validator.isEmail, 'Invalid Email address'],
-        required: "Please enter an email address!"
+        required: true
     }
 });
 
-userSchema.virtual('gravatar').get(function() {
-   const hash = md5(this.email);
-   return `https://gravatar.com/avatar/${hash}?s=200`; 
-});
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
 userSchema.plugin(mongodbErrorHandler);
