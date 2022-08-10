@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.accountService.logout();
+        // this.accountService.logout();
 
         this.form = this.formBuilder.group({
             email: ['', Validators.required],

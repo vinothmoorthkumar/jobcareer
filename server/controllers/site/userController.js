@@ -73,6 +73,12 @@ exports.register = async (req, res, next) => {
     }
 };
 
-// exports.getProfile = (req, res) => {
-//     res.render('profile', { title:'Profile' });
-// }
+exports.getProfile = (req, res) => {
+    try{
+        Model.findOne({}).then((result)=>{
+            res.send({"message":"Success",data:result})
+        })
+    }catch(err){
+        res.send({message:"Error",Error:err});
+    }
+}
