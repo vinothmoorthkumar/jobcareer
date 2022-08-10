@@ -23,6 +23,9 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    workExp: {
+        type: []
+    },
     email: {
         type: String,
         unique: true,

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { UsersService } from '@app/_services';
+import { UsersService, AlertService } from '@app/_services';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +19,7 @@ export class ProfileComponent implements OnInit {
     {year:2018,month:6,day:1},
     {year:2018,month:6,day:10}]
 
-  constructor(private formBuilder: FormBuilder, public usersService:UsersService) { }
+  constructor(private formBuilder: FormBuilder, public usersService:UsersService, public alertService:AlertService) { }
 
   ngOnInit(): void {
     this.getData();
@@ -37,6 +38,7 @@ export class ProfileComponent implements OnInit {
   get workExp() : FormArray {
     return this.form.get("workExp") as FormArray
   }
+
  
   newExp(): FormGroup {
     return this.formBuilder.group({
@@ -71,6 +73,25 @@ export class ProfileComponent implements OnInit {
         workExp:[]
       });
 
+      if(this.profileData && this.profileData.workExp){
+        this.profileData.workExp.forEach(element => {
+          this.workExp.push(this.formBuilder.group({
+            companyName: element.companyName,
+            jobTitle: element.jobTitle,
+            startDate:element.startDate,
+            endDate:element.endDate,
+            skills:element.skills,
+            industry:element.industry,
+            higherLevel:element.higherLevel,
+            schoolname:element.schoolname,
+            schoolDate:element.schoolDate,
+          }));
+        });
+
+      }
+
+
+
   },err=>{
 
   })
@@ -96,6 +117,19 @@ export class ProfileComponent implements OnInit {
     this.submitted = true;
     this.loading = true;
     console.log("this.form.value",this.form.value)
+    this.usersService.updateUserData(this.form.value)
+    .pipe(first())
+    .subscribe(
+        data => {
+          this.loading = false;
+
+            this.alertService.success('Updated successful', { keepAfterRouteChange: true });
+            // this.router.navigate(['../login'], { relativeTo: this.route });
+        },
+        error => {
+            this.alertService.error(error);
+            this.loading = false;
+        });
     // this.accountService.register(this.form.value)
     // .pipe(first())
     // .subscribe(

@@ -82,3 +82,18 @@ exports.getProfile = (req, res) => {
         res.send({message:"Error",Error:err});
     }
 }
+
+exports.updateProfile = (req, res) => {
+    try{
+        let model={
+            mobile: req.body.mobile,
+            name: req.body.name,
+            workExp: req.body.workExp,
+        }
+        Model.findOneAndUpdate({_id:req.user.user_id},model,{upsert:true}).then((result)=>{
+            res.send({"message":"Success",data:result})
+        })
+    }catch(err){
+        res.send({message:"Error",Error:err});
+    }
+}

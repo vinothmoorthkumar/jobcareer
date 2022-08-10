@@ -20,4 +20,8 @@ export class UsersService {
         return this.http.get<any[]>(`/api/site/profile`);
     }
 
+    updateUserData(user) {
+        return this.http.post(`/api/site/user`, user);
+    }
+
 }
