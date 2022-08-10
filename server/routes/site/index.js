@@ -4,7 +4,7 @@ const jobsController = require('../../controllers/site/homeController');
 const userController = require('../../controllers/site/userController');
 const authController = require('../../controllers/site/authController');
 // const { catchErrors } = require('../handlers/errorHandlers');
-
+router.get('/jobs/auth', authController.isLoggedIn,jobsController.authList);
 router.get('/jobs', jobsController.list);
 router.post('/register', userController.register);
 

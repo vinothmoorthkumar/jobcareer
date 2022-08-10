@@ -21,7 +21,11 @@ export class JobsService {
         if(data.search){
             params=params.append('search',data.search)
         }
-        return this.http.get<any[]>(`/api/site/jobs`,{params:params});
+        if(data.auth){
+            return this.http.get<any[]>(`/api/site/jobs/auth`,{params:params});
+        }else{
+            return this.http.get<any[]>(`/api/site/jobs`,{params:params});
+        }
     }
 
     applyJob(id) {

@@ -21,6 +21,10 @@ export class HomeComponent {
         if(this.searchData){
             filter['search']=this.searchData;
         }
+        if(this.user){
+            filter['auth']=true;
+        }
+
         this.jobService.getAllJobs(filter).subscribe(res=>{
             let result:any=res;
             this.jobs=result.data;
@@ -40,7 +44,7 @@ export class HomeComponent {
         this.jobService.applyJob(id).subscribe(res=>{
             let result:any=res;
             this.jobs=result.data;
-            console.log("this.jobs",this.jobs)
+            this.getData();
         },err=>{
 
         })
