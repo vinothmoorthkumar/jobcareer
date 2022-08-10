@@ -20,6 +20,8 @@ export class RegisterComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        // this.accountService.logout();
+
         this.form = this.formBuilder.group({
             name: ['', Validators.required],
             mobile: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
