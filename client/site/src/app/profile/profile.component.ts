@@ -44,7 +44,11 @@ export class ProfileComponent implements OnInit {
       jobTitle: '',
       startDate:'',
       endDate:'',
-      skills:''
+      skills:'',
+      industry:'',
+      higherLevel:'',
+      schoolname:'',
+      schoolDate:'',
     })
   }
  

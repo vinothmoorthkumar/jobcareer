@@ -118,17 +118,34 @@
                                             <option value="Others">Others</option>
                                           </select>
                                     </div>
+                                </div>
 
-                                    <div class="form-group col">
+                                <div>
+                                    <div class="form-group">
                                         <label for="education">Education</label>
-                                        <select class="form-control" formControlName="education" aria-label=".form-select-lg example">
-                                            <option selected>Select Education</option>
-                                            <option value="Highest level">Highest level</option>
-                                            <option value="Hospitality">Hospitality</option>
-                                            <option value="Engineering">Engineering</option>
-                                            <option value="Others">Others</option>
-                                          </select>
+                                        <div class="row">
+                                            <div class="col">                                            
+                                                <input type="text" formControlName="higherLevel" class="form-control" placeholder="Higher Level" />
+                                            </div>
+                                            <div class="col">                                            
+                                                <input type="text" formControlName="schoolname" class="form-control" placeholder="School Name"/>
+                                            </div>
+                                            <div class="col">      
+                                                <div class="input-group">
+                                                    <input class="form-control" placeholder="yyyy-mm-dd"
+                                                    name="dp" formControlName="schoolDate" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled"  #d3="ngbDatepicker">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary" (click)="d3.toggle()" type="button">
+                                                            <i class="bi bi-calendar-week"></i>
+                                                        </button>
+                                                      </div>
+                                                </div>                                      
+                                       
+                                            </div>
+                                        </div>
+                                     
                                     </div>
+
                                 </div>
 
 
