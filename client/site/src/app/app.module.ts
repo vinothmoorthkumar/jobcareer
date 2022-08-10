@@ -15,6 +15,9 @@ import { HomeComponent } from './home';;
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { FormsModule } from '@angular/forms';;
 import { NavComponent } from './nav/nav.component'
+;import { RegisterComponent } from './account/register.component'
+;import { LoginComponent } from './account/login.component'
+import { ProfileComponent } from './profile/profile.component'
 
 @NgModule({
     imports: [
@@ -29,7 +32,10 @@ import { NavComponent } from './nav/nav.component'
         AppComponent,
         AlertComponent,
         HomeComponent,
-        NavComponent    ],
+        NavComponent ,
+        ProfileComponent,
+        RegisterComponent,
+        LoginComponent   ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
