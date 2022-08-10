@@ -23,7 +23,6 @@
                         alt="Black and White Portrait of a Man" loading="lazy" />
                 </a>
 
-                    <!-- <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle></button> -->
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                       <a routerLink="../profile" ngbDropdownItem>Profile</a>
                       <button (click)="logout()" ngbDropdownItem>Logout</button>
@@ -31,19 +30,6 @@
                   </div>
             </div>
               
-              
-            <!-- <div ngbDropdown class="d-inline-block">
-                <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
-                    role="button" ngbDropdownToggle aria-expanded="false">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
-                        alt="Black and White Portrait of a Man" loading="lazy" />
-                </a>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button ngbDropdownItem>Action - 1</button>
-                    <button ngbDropdownItem>Another Action</button>
-                    <button ngbDropdownItem>Something else is here</button>
-                </div>
-            </div> -->
         </div>
         <div *ngIf="!user">
             <a routerLink="../login" class="btn  btn-light float-right">Sign In</a>
@@ -55,9 +41,6 @@
     <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
-
-
-
 
 
 <div class="p-4">
