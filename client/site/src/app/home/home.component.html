@@ -15,35 +15,39 @@
 
         <!-- Right elements -->
         <div class="d-flex align-items-center" *ngIf="user">
-            <!-- Icon -->
-            <a class="text-reset me-3" href="#">
-                <i class="fas fa-shopping-cart"></i>
-            </a>
-
-
-            <!-- Avatar -->
-            <div class="dropdown">
-                <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
-                    role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+            <div>
+                <div ngbDropdown class="d-inline-block">
+                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
+                    role="button" ngbDropdownToggle aria-expanded="false">
                     <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
                         alt="Black and White Portrait of a Man" loading="lazy" />
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                    <li>
-                        <a class="dropdown-item" href="#">My profile</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Settings</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Logout</a>
-                    </li>
-                </ul>
+
+                    <!-- <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle></button> -->
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <a routerLink="../profile" ngbDropdownItem>Profile</a>
+                      <button (click)="logout()" ngbDropdownItem>Logout</button>
+                    </div>
+                  </div>
             </div>
+              
+              
+            <!-- <div ngbDropdown class="d-inline-block">
+                <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
+                    role="button" ngbDropdownToggle aria-expanded="false">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
+                        alt="Black and White Portrait of a Man" loading="lazy" />
+                </a>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button ngbDropdownItem>Action - 1</button>
+                    <button ngbDropdownItem>Another Action</button>
+                    <button ngbDropdownItem>Something else is here</button>
+                </div>
+            </div> -->
         </div>
         <div *ngIf="!user">
-            <a routerLink="../login" class="btn  btn-light float-right" >Sign In</a>
-            <a routerLink="../register" class="btn  btn-light float-right ml-2" >Sign Up</a>
+            <a routerLink="../login" class="btn  btn-light float-right">Sign In</a>
+            <a routerLink="../register" class="btn  btn-light float-right ml-2">Sign Up</a>
 
         </div>
         <!-- Right elements -->
@@ -52,12 +56,16 @@
 </nav>
 <!-- Navbar -->
 
+
+
+
+
 <div class="p-4">
     <div class="container ">
         <div class="mb-1 col-md-3 ml-md-auto pr-0">
             <div class="input-group rounded">
-                <input type="search" class="form-control rounded" [(ngModel)]="searchData" (ngModelChange)="getData()" placeholder="Search" aria-label="Search"
-                    aria-describedby="search-addon" />
+                <input type="search" class="form-control rounded" [(ngModel)]="searchData" (ngModelChange)="getData()"
+                    placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                 <span class="input-group-text border-0" id="search-addon">
                     <i class="bi bi-search"></i>
                 </span>

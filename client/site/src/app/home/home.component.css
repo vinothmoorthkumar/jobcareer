@@ -18,3 +18,7 @@
     overflow: auto;
     height: 75vh;
 }
+
+.dropdown-menu{
+    left: -100px;
+}

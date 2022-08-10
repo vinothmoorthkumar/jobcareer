@@ -30,4 +30,8 @@ export class HomeComponent {
         })
     }
 
+    logout() {
+        this.accountService.logout();
+    }
+
 }
