@@ -47,7 +47,7 @@ exports.register = async (req, res, next) => {
 
         const errors = req.validationErrors();
         if(errors) {
-            res.send({message:"Error",Error:erros});
+            res.send({message:"Error",Error:errors});
             return;
         }
     

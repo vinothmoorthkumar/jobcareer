@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const passport = require('passport');
+// const passport = require('passport');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 
@@ -16,7 +16,7 @@ const routesSite = require('./routes/site');
 
 const helpers = require('./helpers');
 const errorHandlers = require('./handlers/errorHandlers');
-require('./handlers/passport');
+// require('./handlers/passport');
 
 //create our Express app
 const app = express();
@@ -32,29 +32,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 // validating form data in validateRegister in userController 
 app.use(expressValidator());
 
-app.use(session({
-  secret: process.env.SECRET,
-  key: process.env.KEY,
-  resave: false,
-  saveUninitialized: false,
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
-}));
+// app.use(session({
+//   secret: process.env.SECRET,
+//   key: process.env.KEY,
+//   resave: false,
+//   saveUninitialized: false,
+//   store: new MongoStore({ mongooseConnection: mongoose.connection })
+// }));
 
 // // Passport JS is what we use to handle our logins
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // flash middleware let's us use req.flash
-app.use(flash());
+// app.use(flash());
 
 // The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
-app.use((req, res, next) => {
-  res.locals.h = helpers;
-  res.locals.flashes = req.flash();
-  res.locals.user = req.user || null;
-  res.locals.currentPath = req.path;
-  next();
-});
+// app.use((req, res, next) => {
+//   res.locals.h = helpers;
+//   res.locals.flashes = req.flash();
+//   res.locals.user = req.user || null;
+//   res.locals.currentPath = req.path;
+//   next();
+// });
 
 
 // after all the above middleware, now we handle our routes
