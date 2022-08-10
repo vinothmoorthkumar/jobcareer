@@ -32,8 +32,6 @@ export class ProfileComponent implements OnInit {
     this.usersService.getUserData().subscribe(res=>{
       let result:any=res;
       this.profileData=result.data;
-      console.log("res",this.profileData)
-
       this.form.setValue({
         mobile:this.profileData.mobile,
         email:this.profileData.email,
