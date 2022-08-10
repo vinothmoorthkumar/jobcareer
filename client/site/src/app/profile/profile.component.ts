@@ -28,6 +28,9 @@ export class ProfileComponent implements OnInit {
       mobile: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       name: ['', Validators.required],
+      higherLevel:[''],
+      schoolname:[''],
+      schoolDate:[''],
       workExp: new FormArray([])
       
     });
@@ -48,9 +51,6 @@ export class ProfileComponent implements OnInit {
       endDate:'',
       skills:'',
       industry:'',
-      higherLevel:'',
-      schoolname:'',
-      schoolDate:'',
     })
   }
  
@@ -70,6 +70,9 @@ export class ProfileComponent implements OnInit {
         mobile:this.profileData.mobile,
         email:this.profileData.email,
         name:this.profileData.name,
+        higherLevel:this.profileData.higherLevel||"",
+        schoolname:this.profileData.schoolname||"",
+        schoolDate:this.profileData.schoolDate||"",
         workExp:[]
       });
 
@@ -81,10 +84,8 @@ export class ProfileComponent implements OnInit {
             startDate:element.startDate,
             endDate:element.endDate,
             skills:element.skills,
-            industry:element.industry,
-            higherLevel:element.higherLevel,
-            schoolname:element.schoolname,
-            schoolDate:element.schoolDate,
+            industry:element.industry
+
           }));
         });
 

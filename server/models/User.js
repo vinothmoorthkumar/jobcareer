@@ -26,6 +26,15 @@ const userSchema = new mongoose.Schema({
     workExp: {
         type: []
     },
+    schoolname: {
+        type: String,
+    },
+    higherLevel: {
+        type: String,
+    },
+    schoolDate: {
+        type: {},
+    },
     email: {
         type: String,
         unique: true,

@@ -75,7 +75,7 @@ exports.register = async (req, res, next) => {
 
 exports.getProfile = (req, res) => {
     try{
-        Model.findOne({}).then((result)=>{
+        Model.findOne({_id:req.user.user_id}).then((result)=>{
             res.send({"message":"Success",data:result})
         })
     }catch(err){
@@ -89,6 +89,9 @@ exports.updateProfile = (req, res) => {
             mobile: req.body.mobile,
             name: req.body.name,
             workExp: req.body.workExp,
+            higherLevel:req.body.higherLevel,
+            schoolname:req.body.schoolname,
+            schoolDate:req.body.schoolDate,
         }
         Model.findOneAndUpdate({_id:req.user.user_id},model,{upsert:true}).then((result)=>{
             res.send({"message":"Success",data:result})
