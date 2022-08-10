@@ -19,18 +19,27 @@ export class ProfileComponent implements OnInit {
     this.getData();
 
     this.form = this.formBuilder.group({
-      password: ['', Validators.required],
+      // password: ['', Validators.required],
       mobile: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       name: ['', Validators.required],
     });
+
+    this.form.controls['email'].disable();
   }
 
   getData(){
     this.usersService.getUserData().subscribe(res=>{
       let result:any=res;
-      this.profileData=result;
-      console.log("$$$$",res)
+      this.profileData=result.data;
+      console.log("res",this.profileData)
+
+      this.form.setValue({
+        mobile:this.profileData.mobile,
+        email:this.profileData.email,
+        name:this.profileData.name,
+      });
+
   },err=>{
 
   })
