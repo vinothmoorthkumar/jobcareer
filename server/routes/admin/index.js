@@ -4,6 +4,7 @@ const jobsController = require('../../controllers/admin/jobs');
 const authController = require('../../controllers/admin/authController');
 const usersController = require('../../controllers/admin/users');
 
+const applicationsController = require('../../controllers/admin/applications');
 
 router.post('/jobs', authController.isLoggedIn, jobsController.save);
 router.get('/jobs/:id',  authController.isLoggedIn,jobsController.getById);
@@ -17,6 +18,13 @@ router.get('/users/:id',  authController.isLoggedIn,usersController.getById);
 router.get('/users',  authController.isLoggedIn,usersController.list);
 router.put('/users/:id',  authController.isLoggedIn,usersController.update);
 router.delete('/users/:id', authController.isLoggedIn, usersController.delete);
+
+
+router.post('/applicaitons', authController.isLoggedIn, applicationsController.save);
+router.get('/applicaitons/:id',  authController.isLoggedIn,applicationsController.getById);
+router.get('/applicaitons',  authController.isLoggedIn,applicationsController.list);
+router.put('/applicaitons/:id',  authController.isLoggedIn,applicationsController.update);
+router.delete('/applicaitons/:id', authController.isLoggedIn, applicationsController.delete);
 
 router.post('/login', authController.login);
 

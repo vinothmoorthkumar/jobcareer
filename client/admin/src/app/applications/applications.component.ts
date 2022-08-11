@@ -34,7 +34,7 @@ export class AppliedComponent {
         });
     }
 
-    displayedColumns: string[] = ['companyName', 'jobTitle', 'action'];
+    displayedColumns: string[] = ['userId', 'companyname','position','action'];
     dataSource = [];
 
 
@@ -44,7 +44,7 @@ export class AppliedComponent {
             .subscribe(
                 data => {
                     this.getData();
-                    this.alertService.success('User added successfully', { keepAfterRouteChange: true });
+                    // this.alertService.success('User added successfully', { keepAfterRouteChange: true });
                 },
                 error => {
                 });
@@ -82,7 +82,7 @@ export class AppliedComponent {
         .subscribe(
             data => {
                 this.getData();
-                this.alertService.success('User added successfully', { keepAfterRouteChange: true });
+                // this.alertService.success('User added successfully', { keepAfterRouteChange: true });
             },
             error => {
             });
@@ -94,7 +94,7 @@ export class AppliedComponent {
         .subscribe(
             data => {
                 this.getData();
-                this.alertService.success('User added successfully', { keepAfterRouteChange: true });
+                // this.alertService.success('User added successfully', { keepAfterRouteChange: true });
             },
             error => {
             });

@@ -39,7 +39,7 @@ export class UsersViewComponent {
             .subscribe(
                 data => {
                     this.getData();
-                    this.alertService.success('User added successfully', { keepAfterRouteChange: true });
+                    // this.alertService.success('User added successfully', { keepAfterRouteChange: true });
                 },
                 error => {
                 });
@@ -77,7 +77,7 @@ export class UsersViewComponent {
         .subscribe(
             data => {
                 this.getData();
-                this.alertService.success('User added successfully', { keepAfterRouteChange: true });
+                // this.alertService.success('User added successfully', { keepAfterRouteChange: true });
             },
             error => {
             });
@@ -89,7 +89,7 @@ export class UsersViewComponent {
         .subscribe(
             data => {
                 this.getData();
-                this.alertService.success('User added successfully', { keepAfterRouteChange: true });
+                // this.alertService.success('User added successfully', { keepAfterRouteChange: true });
             },
             error => {
             });
