@@ -26,7 +26,7 @@ export class JobsService {
 
 
     save(data) {
-        return this.http.post<any>(`api/admin/users`, data)
+        return this.http.post<any>(`api/admin/jobs`, data)
             .pipe(map(res => {
                 return res;
             }));
@@ -34,20 +34,20 @@ export class JobsService {
 
 
     getAll() {
-        return this.http.get<any[]>(`/api/admin/users`);
+        return this.http.get<any[]>(`/api/admin/jobs`);
     }
 
     getById(id: string) {
-        return this.http.get<any>(`/api/admin/users/${id}`);
+        return this.http.get<any>(`/api/admin/jobs/${id}`);
     }
 
     delete(id: string) {
-        return this.http.delete<any>(`/api/admin/users/${id}`);
+        return this.http.delete<any>(`/api/admin/jobs/${id}`);
     }
 
 
     update(id, params) {
-        return this.http.put(`/api/admin/users/${id}`, params)
+        return this.http.put(`/api/admin/jobs/${id}`, params)
             .pipe(map(res => {
                 return res;
             }));

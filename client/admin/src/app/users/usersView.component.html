@@ -1,8 +1,44 @@
 ﻿<div class="p-4">
     <div class="container">
-      <div class="mb-1 float-left pageTitle">
+      <div class="mb-1 pageTitle">
         User
       </div>
+
+      <mat-card>
+        <mat-card-title>{{dataSource.name}}</mat-card-title>
+
+
+        <mat-card-subtitle>
+          Contact Details
+        </mat-card-subtitle>
+        <div>
+          <mat-icon> email</mat-icon>
+          <span class="aligned-with-icon">{{dataSource.email}}</span>
+        </div>
+        <div>
+          <mat-icon>mobile_friendly</mat-icon>
+          <span class="aligned-with-icon">{{dataSource.mobile}}</span>
+        </div>
+
+        <mat-card-subtitle class="mt-3"> 
+          Education
+        </mat-card-subtitle>
+        <div class="mb-3">
+          <b>Higher Level:</b> {{dataSource.higherLevel}}<br>
+          <b>School :</b> {{dataSource.schoolname}}<br>
+          <b>Completed Year :</b> {{dateConvert(dataSource.schoolDate) | date}}
+
+        </div>
+
+        <mat-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </mat-card-content>
+      </mat-card>
+  
 
       <!-- <div>
         <form [formGroup]="FormGroup" class="example-form">

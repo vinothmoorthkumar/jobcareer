@@ -1,5 +1,5 @@
 ﻿import { User } from '@app/_models';
-import { JobsService, AlertService } from '@app/_services';
+import { UsersService, AlertService } from '@app/_services';
 import { Component, Inject } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
@@ -15,7 +15,7 @@ export class UsersViewComponent {
     name: string;
     editObj:any={};
     userId;
-    constructor(private activatedRoute: ActivatedRoute,private alertService: AlertService,private jobService: JobsService, public dialog: MatDialog) {
+    constructor(private activatedRoute: ActivatedRoute,private alertService: AlertService,private usersService: UsersService, public dialog: MatDialog) {
         // this.userId = activatedRoute.params.pipe(map(p => p.id));
 
         this.userId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -30,12 +30,11 @@ export class UsersViewComponent {
     }
 
 
-    displayedColumns: string[] = ['name', 'email', 'action'];
     dataSource = [];
 
 
     saveData(data){
-        this.jobService.save(data)
+        this.usersService.save(data)
             .pipe(first())
             .subscribe(
                 data => {
@@ -47,7 +46,7 @@ export class UsersViewComponent {
     }
 
     getData(){
-        this.jobService.getById(this.userId).subscribe(res=>{
+        this.usersService.getById(this.userId).subscribe(res=>{
             let result:any =res;
             this.dataSource=result.data;
         },err=>{
@@ -73,7 +72,7 @@ export class UsersViewComponent {
 
 
     updateData(data){
-        this.jobService.update(data._id,data)
+        this.usersService.update(data._id,data)
         .pipe(first())
         .subscribe(
             data => {
@@ -85,7 +84,7 @@ export class UsersViewComponent {
     }
 
     deleteData(id){
-        this.jobService.delete(id)
+        this.usersService.delete(id)
         .pipe(first())
         .subscribe(
             data => {
@@ -94,5 +93,9 @@ export class UsersViewComponent {
             },
             error => {
             });
+    }
+
+    dateConvert(date){
+        return new Date(`${date.month}/${date.day}/${date.year}`)
     }
 }
