@@ -1,25 +1,23 @@
 ﻿import { User } from '@app/_models';
-import { UsersService, AlertService } from '@app/_services';
+import { JobsService, AlertService } from '@app/_services';
 import { Component, Inject } from '@angular/core';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-
-
-
 @Component({
-    templateUrl: 'users.component.html',
+    templateUrl: 'usersView.component.html',
     styleUrls: ['users.component.css']
 })
-export class UsersComponent {
+export class UsersViewComponent {
     name: string;
     editObj:any={};
-    constructor(private alertService: AlertService,private usersService: UsersService, public dialog: MatDialog) {
+    constructor(private alertService: AlertService,private jobService: JobsService, public dialog: MatDialog) {
     }
 
     ngOnInit():void {
+        console.log("usr view")
         this.getData();
     }
 
@@ -29,7 +27,7 @@ export class UsersComponent {
 
 
     saveData(data){
-        this.usersService.save(data)
+        this.jobService.save(data)
             .pipe(first())
             .subscribe(
                 data => {
@@ -41,7 +39,7 @@ export class UsersComponent {
     }
 
     getData(){
-        this.usersService.getAll().subscribe(res=>{
+        this.jobService.getAll().subscribe(res=>{
             let result:any =res;
             this.dataSource=result.data;
         },err=>{
@@ -67,7 +65,7 @@ export class UsersComponent {
 
 
     updateData(data){
-        this.usersService.update(data._id,data)
+        this.jobService.update(data._id,data)
         .pipe(first())
         .subscribe(
             data => {
@@ -79,7 +77,7 @@ export class UsersComponent {
     }
 
     deleteData(id){
-        this.usersService.delete(id)
+        this.jobService.delete(id)
         .pipe(first())
         .subscribe(
             data => {

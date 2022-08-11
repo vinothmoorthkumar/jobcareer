@@ -6,6 +6,7 @@ import { LoginComponent } from './account/login.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthGuard } from './_helpers';
 import { UsersComponent } from './users/users.component';
+import { UsersViewComponent } from './users/usersView.component';
 
 const routes: Routes = [
     { 
@@ -16,6 +17,8 @@ const routes: Routes = [
           { path: '', component: JobsComponent },
           { path: 'jobs', component: JobsComponent },
           { path: 'users', component: UsersComponent },
+          { path: 'users-view/:id', component: UsersViewComponent },
+
         ]
     },
     { path: 'login', component: LoginComponent },
