@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './_components';
 import { HomeComponent } from './home';
+import { LoginComponent } from './account/login.component';
+
 import { JobsComponent, JobsDialog } from './jobs/jobs.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -53,6 +55,7 @@ import { FormsModule } from '@angular/forms';
         AppComponent,
         AlertComponent,
         HomeComponent,
+        LoginComponent,
         JobsComponent,
         JobsDialog,
         NavComponent],
