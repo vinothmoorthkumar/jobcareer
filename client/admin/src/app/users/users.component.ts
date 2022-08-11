@@ -24,7 +24,7 @@ export class UsersComponent {
     }
 
 
-    displayedColumns: string[] = ['companyName', 'jobTitle', 'action'];
+    displayedColumns: string[] = ['name', 'email', 'action'];
     dataSource = [];
 
 

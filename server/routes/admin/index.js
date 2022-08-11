@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jobsController = require('../../controllers/admin/jobs');
 const authController = require('../../controllers/admin/authController');
+const usersController = require('../../controllers/admin/users');
 
 
 router.post('/jobs', authController.isLoggedIn, jobsController.save);
@@ -10,6 +11,12 @@ router.get('/jobs',  authController.isLoggedIn,jobsController.list);
 router.put('/jobs/:id',  authController.isLoggedIn,jobsController.update);
 router.delete('/jobs/:id', authController.isLoggedIn, jobsController.delete);
 
+
+router.post('/users', authController.isLoggedIn, usersController.save);
+router.get('/users/:id',  authController.isLoggedIn,usersController.getById);
+router.get('/users',  authController.isLoggedIn,usersController.list);
+router.put('/users/:id',  authController.isLoggedIn,usersController.update);
+router.delete('/users/:id', authController.isLoggedIn, usersController.delete);
 
 router.post('/login', authController.login);
 
