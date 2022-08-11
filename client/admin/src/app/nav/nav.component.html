@@ -3,7 +3,7 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar style="border-bottom: 1px #dfe0df solid;">Menu</mat-toolbar>
+    <mat-toolbar style="border-bottom: 1px #dfe0df solid;background: #322e2e; color: #fff;font-family: fantasy;">We hire</mat-toolbar>
     <mat-nav-list>
       <ng-container *ngFor="let item of menuItems" >
         <a [routerLinkActive]="['is-active']" mat-list-item [routerLink]="'/'+item.path"> {{item.name}} </a>

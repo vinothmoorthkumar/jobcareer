@@ -3,7 +3,7 @@
         <div class="mb-1 col-md-3 ml-md-auto pr-0">
             <div class="input-group rounded">
                 <input type="search" class="form-control rounded" [(ngModel)]="searchData" (ngModelChange)="getData()"
-                    placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                    placeholder="Search by Job" aria-label="Search" aria-describedby="search-addon" />
                 <span class="input-group-text border-0" id="search-addon">
                     <i class="bi bi-search"></i>
                 </span>
@@ -13,8 +13,10 @@
         <div class="jobList">
             <div class="card mb-3" *ngFor="let item of jobs">
                 <div class="card-body ">
-                    <h5 class="card-title">{{item.companyName}}</h5>
-                    <h6 class="card-text jobtitle">{{item.jobTitle}}</h6>
+                    <!-- <h5 class="card-title">{{item.companyName}}</h5>
+                    <h6 class="card-text jobtitle">{{item.jobTitle}}</h6> -->
+                    <h5 class="card-title">{{item.jobTitle}}</h5>
+                    <h6 class="card-text jobtitle">{{item.companyName}}</h6>
                     <p class="card-text">{{item.jobDescription}}</p>
                     <h6 class="float-left mb-0 postedAt">Posted At {{item.createdAt | date:'medium'}}</h6>
                     <button class="btn btn-success float-right" *ngIf="user && item.applied">Applied</button>

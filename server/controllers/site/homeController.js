@@ -10,7 +10,7 @@ exports.list = (req, res, next) => {
         if (req.query.search) {
             query["jobTitle"] = { "$regex": req.query.search, $options: "i" };
         }
-        Model.find(query).then((result) => {
+        Model.find(query).sort({createdAt: -1}).then((result) => {
             res.send({ "message": "Success", data: result })
         })
 
