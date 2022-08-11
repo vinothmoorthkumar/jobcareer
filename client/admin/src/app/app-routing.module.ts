@@ -4,11 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { JobsComponent } from './jobs/jobs.component';
 import { LoginComponent } from './account/login.component';
 import { NavComponent } from './nav/nav.component';
+import { AuthGuard } from './_helpers';
 
 const routes: Routes = [
     { 
         path: '',
         component: NavComponent, 
+        canActivate: [AuthGuard],
         children: [
           { path: '', component: JobsComponent },
           { path: 'jobs', component: JobsComponent },
