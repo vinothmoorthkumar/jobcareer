@@ -10,8 +10,10 @@ Run `npm start` to start express server on `http://localhost:3000`
 
 ## Build Admin
 `cd client/admin`
+
 Run `ng build` 
 
 ## Build Site
 `cd client/site`
+
 Run `ng build` 
