@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AlertComponent } from './_components';
 import { HomeComponent } from './home';
 import { LoginComponent } from './account/login.component';
+import { UsersComponent } from './users/users.component';
 
 import { JobsComponent, JobsDialog } from './jobs/jobs.component';
 
@@ -58,6 +59,7 @@ import { FormsModule } from '@angular/forms';
         LoginComponent,
         JobsComponent,
         JobsDialog,
+        UsersComponent,
         NavComponent],
     exports:[
         CommonModule

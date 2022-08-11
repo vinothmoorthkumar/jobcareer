@@ -5,6 +5,7 @@ import { JobsComponent } from './jobs/jobs.component';
 import { LoginComponent } from './account/login.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthGuard } from './_helpers';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
     { 
@@ -14,6 +15,7 @@ const routes: Routes = [
         children: [
           { path: '', component: JobsComponent },
           { path: 'jobs', component: JobsComponent },
+          { path: 'users', component: UsersComponent },
         ]
     },
     { path: 'login', component: LoginComponent },
