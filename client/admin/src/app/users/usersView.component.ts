@@ -1,10 +1,11 @@
 ﻿import { User } from '@app/_models';
 import { JobsService, AlertService } from '@app/_services';
 import { Component, Inject } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 
 @Component({
     templateUrl: 'usersView.component.html',
@@ -13,11 +14,18 @@ import { first } from 'rxjs/operators';
 export class UsersViewComponent {
     name: string;
     editObj:any={};
-    constructor(private alertService: AlertService,private jobService: JobsService, public dialog: MatDialog) {
+    userId;
+    constructor(private activatedRoute: ActivatedRoute,private alertService: AlertService,private jobService: JobsService, public dialog: MatDialog) {
+        // this.userId = activatedRoute.params.pipe(map(p => p.id));
+
+        this.userId = this.activatedRoute.snapshot.paramMap.get('id');
+        // this.activatedRoute.queryParams.subscribe(params => {
+        //     console.log("D",params)
+        //     this.userId = params['id'];
+        // });
     }
 
     ngOnInit():void {
-        console.log("usr view")
         this.getData();
     }
 
@@ -39,7 +47,7 @@ export class UsersViewComponent {
     }
 
     getData(){
-        this.jobService.getAll().subscribe(res=>{
+        this.jobService.getById(this.userId).subscribe(res=>{
             let result:any =res;
             this.dataSource=result.data;
         },err=>{
