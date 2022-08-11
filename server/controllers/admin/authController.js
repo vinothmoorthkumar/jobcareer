@@ -18,7 +18,7 @@ exports.login = async (req,res)=>{
           const { email, password } = req.body;
 
           // Validate if user exist in our database
-          const user = await User.findOne({ email });
+          const user = await User.findOne({ email,admin:true });
       
           if (user && (await bcrypt.compare(password, user.password))) {
             // Create token
