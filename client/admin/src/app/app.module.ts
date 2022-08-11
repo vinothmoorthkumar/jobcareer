@@ -14,6 +14,7 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './account/login.component';
 import { UsersComponent } from './users/users.component';
 import { UsersViewComponent } from './users/usersView.component';
+import { AppliedComponent, appliedDialog } from './applications/applications.component';
 
 import { JobsComponent, JobsDialog } from './jobs/jobs.component';
 
@@ -37,8 +38,8 @@ import {MatCardModule} from '@angular/material/card';
     imports: [
         CommonModule,
         BrowserModule,
-        ReactiveFormsModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpClientModule,
         AppRoutingModule,
         BrowserAnimationsModule ,
@@ -64,6 +65,8 @@ import {MatCardModule} from '@angular/material/card';
         JobsDialog,
         UsersComponent,
         UsersViewComponent,
+        AppliedComponent,
+        appliedDialog,
         NavComponent],
     exports:[
         CommonModule

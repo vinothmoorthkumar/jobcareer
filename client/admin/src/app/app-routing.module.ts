@@ -7,6 +7,7 @@ import { NavComponent } from './nav/nav.component';
 import { AuthGuard } from './_helpers';
 import { UsersComponent } from './users/users.component';
 import { UsersViewComponent } from './users/usersView.component';
+import { AppliedComponent } from './applications/applications.component';
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -19,7 +20,7 @@ const routes: Routes = [
           { path: 'jobs', component: JobsComponent },
           { path: 'users', component: UsersComponent },
           { path: 'users-view/:id', component: UsersViewComponent },
-
+          { path: 'applications', component: AppliedComponent },
         ]
     },
 
