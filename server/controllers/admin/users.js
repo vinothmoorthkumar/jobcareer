@@ -34,7 +34,7 @@ exports.save = (req, res, next) => {
 
 exports.list = (req, res, next) => {
     try{
-        Model.find({}).then((result)=>{
+        Model.find( { admin: { $ne: true } }).then((result)=>{
             res.send({"message":"Success",data:result})
         })
     }catch(err){
