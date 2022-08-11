@@ -4,11 +4,11 @@ const jobsController = require('../../controllers/admin/jobs');
 const authController = require('../../controllers/admin/authController');
 
 
-router.post('/jobs', jobsController.save);
-router.get('/jobs/:id', jobsController.getById);
-router.get('/jobs', jobsController.list);
-router.put('/jobs/:id', jobsController.update);
-router.delete('/jobs/:id', jobsController.delete);
+router.post('/jobs', authController.isLoggedIn, jobsController.save);
+router.get('/jobs/:id',  authController.isLoggedIn,jobsController.getById);
+router.get('/jobs',  authController.isLoggedIn,jobsController.list);
+router.put('/jobs/:id',  authController.isLoggedIn,jobsController.update);
+router.delete('/jobs/:id', authController.isLoggedIn, jobsController.delete);
 
 
 router.post('/login', authController.login);
