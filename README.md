@@ -1,7 +1,6 @@
 # Mean-Stack
 
-MEAN application.
-
+Career portal application.
 
 
 ## Build Admin
