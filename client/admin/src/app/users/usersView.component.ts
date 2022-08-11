@@ -30,7 +30,7 @@ export class UsersViewComponent {
     }
 
 
-    dataSource = [];
+    dataSource :any= {};
 
 
     saveData(data){

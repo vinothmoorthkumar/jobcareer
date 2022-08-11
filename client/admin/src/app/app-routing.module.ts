@@ -9,6 +9,7 @@ import { UsersComponent } from './users/users.component';
 import { UsersViewComponent } from './users/usersView.component';
 
 const routes: Routes = [
+    { path: 'login', component: LoginComponent },
     { 
         path: '',
         component: NavComponent, 
@@ -21,7 +22,6 @@ const routes: Routes = [
 
         ]
     },
-    { path: 'login', component: LoginComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

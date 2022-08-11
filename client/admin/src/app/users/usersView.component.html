@@ -6,72 +6,72 @@
 
       <mat-card>
         <mat-card-title>{{dataSource.name}}</mat-card-title>
+        <mat-divider ></mat-divider>
 
 
-        <mat-card-subtitle>
-          Contact Details
-        </mat-card-subtitle>
-        <div>
-          <mat-icon> email</mat-icon>
-          <span class="aligned-with-icon">{{dataSource.email}}</span>
-        </div>
-        <div>
-          <mat-icon>mobile_friendly</mat-icon>
-          <span class="aligned-with-icon">{{dataSource.mobile}}</span>
-        </div>
-
-        <mat-card-subtitle class="mt-3"> 
-          Education
-        </mat-card-subtitle>
-        <div class="mb-3">
-          <b>Higher Level:</b> {{dataSource.higherLevel}}<br>
-          <b>School :</b> {{dataSource.schoolname}}<br>
-          <b>Completed Year :</b> {{dateConvert(dataSource.schoolDate) | date}}
-
+        <div class="mt-3">
+          <mat-card-subtitle>
+            Contact Details
+          </mat-card-subtitle>
+          <div>
+            <mat-icon> email</mat-icon>
+            <span class="aligned-with-icon">{{dataSource.email}}</span>
+          </div>
+          <div>
+            <mat-icon>mobile_friendly</mat-icon>
+            <span class="aligned-with-icon">{{dataSource.mobile}}</span>
+          </div>
         </div>
 
-        <mat-card-content>
+        <mat-divider></mat-divider>
+
+        <div class="mt-3">
+          <mat-card-subtitle > 
+            Education
+          </mat-card-subtitle>
+          <div>
+            <b>Higher Level:</b> {{dataSource.higherLevel}}<br>
+            <b>School :</b> {{dataSource.schoolname}}<br>
+            <b>Completed Year :</b> {{dateConvert(dataSource.schoolDate) | date}}
+          </div>
+          <mat-divider></mat-divider>
+        </div>
+
+        <div class="mt-3">
+          <mat-card-subtitle > 
+            Work Experience
+          </mat-card-subtitle>
+          <div>
+            <ng-container *ngFor="let item of dataSource.workExp; let i=index">
+            <div class="mb-2">
+              <h4>{{item.companyName}}</h4>
+              <h6>{{item.jobTitle}}</h6>
+              <h6 class="date_show">{{dateConvert(item.startDate) | date}}-{{dateConvert(item.endDate) | date}}</h6>
+              <div class="row">
+                <div class="col">
+                  <b>Industry</b>:{{item.industry}}
+                </div>
+                <div class="col">
+                  <b>Skill</b>:{{item.skills}}</div>
+              </div>
+              <hr class="dotted">
+
+            </div>
+              
+            </ng-container>
+
+          </div>
+        </div>
+        <!-- <mat-divider></mat-divider> -->
+
+        <!-- <mat-card-content>
           <p>
             The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
             A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
             bred for hunting.
           </p>
-        </mat-card-content>
+        </mat-card-content> -->
       </mat-card>
-  
-
-      <!-- <div>
-        <form [formGroup]="FormGroup" class="example-form">
-          <p>
-              <mat-form-field appearance="outline" class="full-width-field">
-                  <mat-label>Company Name</mat-label>
-                  <input matInput formControlName="companyName">
-                  <mat-error *ngIf="checkError('companyName', 'required')">company name is required</mat-error>
-                  <mat-error *ngIf="checkError('companyName', 'minlength')">company name should be more than 5 characters
-                  </mat-error>
-                  <mat-error *ngIf="checkError('companyName', 'maxlength')">company name should be less than 20 characters
-                  </mat-error>
-              </mat-form-field>
-          </p>
-          <p>
-              <mat-form-field appearance="outline" class="full-width-field">
-                  <mat-label>Job Title</mat-label>
-                  <input matInput formControlName="jobTitle">
-                  <mat-error *ngIf="checkError('jobTitle', 'required')">Job Title is required</mat-error>
-                  <mat-error *ngIf="checkError('jobTitle', 'maxlength')">Job Title should be less than 200 characters
-                  </mat-error>
-              </mat-form-field>
-          </p>
-          <p>
-              <mat-form-field appearance="outline" class="full-width-field">
-                  <mat-label>Job Description</mat-label>
-                  <textarea matInput  formControlName="jobDescription"></textarea>
-                        <mat-error *ngIf="checkError('jobDescription', 'required')">Job Description is required</mat-error>
-                        <mat-error *ngIf="checkError('jobDescription', 'maxlength')">Job Description should be less than 200 characters</mat-error>
-                  </mat-form-field>
-              </p>      
-        </form>
-      </div> -->
     </div>
 </div>
 
