@@ -3,6 +3,11 @@
 Career portal application.
 
 
+## Env file
+
+Create `variables.env` inside server folders. Sample available in `variables.env.sample`
+
+
 ## Build Admin
 `cd client/admin`
 
