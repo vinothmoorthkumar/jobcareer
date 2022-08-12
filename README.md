@@ -5,7 +5,7 @@ Career portal application.
 
 ## Env file
 
-Create `variables.env` inside server folders. Sample available in `variables.env.sample`
+Create `variables.env` inside `server` folders. Sample available in `server/variables.env.sample`
 
 
 ## Build Admin
